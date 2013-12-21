@@ -1,0 +1,11 @@
+config.squeezr {
+	enable										= {$plugin.squeezr.common.enable}
+	em2px											= {$plugin.squeezr.common.em2px}
+	images {
+		disable									= {$plugin.squeezr.images.disable}
+		breakpoints							= {$plugin.squeezr.images.breakpoints}
+	}
+	css {
+		disable									= {$plugin.squeezr.css.disable}
+	}
+}

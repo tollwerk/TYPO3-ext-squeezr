@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-05-30T12:05:38Z" product-name="squeezr">
+		<header/>
+		<body>
+		    <trans-unit id="common" xml:space="preserve">
+				<source>Common options</source>
+			</trans-unit>
+		    <trans-unit id="common.enable" xml:space="preserve">
+				<source>Enable squeezr</source>
+			</trans-unit>
+		    <trans-unit id="common.em-precision" xml:space="preserve">
+				<source>Em-to-pixel conversion precision:Enter the smallest fraction you would like to be supported by the Em-to-pixel conversion</source>
+			</trans-unit>
+		    <trans-unit id="common.lifetime" xml:space="preserve">
+				<source>Client cache lifetime:Enter the total of seconds client browsers should cache resources (1 week = 604800 seconds)</source>
+			</trans-unit>
+		    <trans-unit id="images" xml:space="preserve">
+				<source>Image engine</source>
+			</trans-unit>
+		    <trans-unit id="images.disable" xml:space="preserve">
+				<source>Disable image engine</source>
+			</trans-unit>
+		    <trans-unit id="images.breakpoints" xml:space="preserve">
+				<source>Image breakpoints:Enter a comma separated list of breakpoint pixel values here</source>
+			</trans-unit>
+		    <trans-unit id="images.enable" xml:space="preserve">
+				<source>Enable the image engine</source>
+			</trans-unit>
+		    <trans-unit id="images.quality" xml:space="preserve">
+				<source>JPEG quality:Control the quality of JPEG images by giving a value between 1 and 100 (defaults to 80)</source>
+			</trans-unit>
+		    <trans-unit id="images.sharpen" xml:space="preserve">
+				<source>Image sharpening:Enable this option to slightly sharpen downsampled images</source>
+			</trans-unit>
+		    <trans-unit id="images.forcesharpen" xml:space="preserve">
+				<source>Force image sharpening:Enable this option to force sharpening in any case, even if it impacts image quality (GIF or 8-bit PNG images)</source>
+			</trans-unit>
+		    <trans-unit id="images.undersized" xml:space="preserve">
+				<source>Copy undersized images:Enable this option to let squeezr make copies of undersized images in case your system doesn't support symlinks</source>
+			</trans-unit>
+		    <trans-unit id="images.pngquantizer" xml:space="preserve">
+				<source>PNG image quantizer:Select the quantizer to use for downsampling 8-bit PNG images (all options but "internal" are third party tools that have to be installed on the server independently)</source>
+			</trans-unit>
+		    <trans-unit id="images.pngquantizer.speed" xml:space="preserve">
+				<source>PNG quantizer speed:Control the quantizer speed (and quality) by giving a speed factor between 1 (slow, max. quality) and 10 (fast, rough)</source>
+			</trans-unit>
+		    <trans-unit id="css" xml:space="preserve">
+				<source>CSS engine</source>
+			</trans-unit>
+		    <trans-unit id="css.enable" xml:space="preserve">
+				<source>Enable the CSS engine</source>
+			</trans-unit>
+		    <trans-unit id="css.minification" xml:space="preserve">
+				<source>CSS minification provider</source>
+			</trans-unit>
+		    <trans-unit id="css.disable" xml:space="preserve">
+				<source>Disable CSS engine</source>
+			</trans-unit>
+		    <trans-unit id="cache.update" xml:space="preserve">
+				<source>Update squeezr cache</source>
+			</trans-unit>
+		    <trans-unit id="config.update" xml:space="preserve">
+				<source>The squeezr configuration has successfully been updated.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

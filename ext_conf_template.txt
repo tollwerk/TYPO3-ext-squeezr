@@ -1,0 +1,29 @@
+# cat=common/a; type=int+; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:common.lifetime
+lifetime = 604800
+
+# cat=images/a; type=boolean; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:images.enable
+images = 1
+
+# cat=images/b; type=int+; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:images.quality
+quality = 80
+
+# cat=images/c; type=boolean; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:images.sharpen
+sharpen = 1
+
+# cat=images/d; type=boolean; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:images.forcesharpen
+forcesharpen = 0
+
+# cat=images/e; type=boolean; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:images.undersized
+undersized = 0
+
+# cat=images/m; type=options[internal,pngquant,pngnq]; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:images.pngquantizer
+pngquantizer = internal
+
+# cat=images/n; type=int+; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:images.pngquantizer.speed
+pngquantizerspeed = 5
+
+# cat=css/a; type=boolean; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:css.enable
+css = 1
+
+# cat=css/b; type=options[---=,Minify=minify]; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:css.minification
+minification = minify
