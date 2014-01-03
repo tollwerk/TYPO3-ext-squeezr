@@ -26,20 +26,12 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-if (!defined('TYPO3_MODE')) {
-	die ('Access denied.');
+if (!defined('TYPO3_cliMode')) {
+	die('You cannot run this script directly!');
 }
 
-// Register hook for squeezr JavaScript integration
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['checkDataSubmission'][] = 'EXT:'.$_EXTKEY.'/Classes/Utility/Squeezr.php:Tollwerk\\Squeezr\\Utility\\Squeezr';
-
-// Provide global access to the extension configuration
-$GLOBALS['TYPO3_CONF_VARS']['EXT']['extParams'][$_EXTKEY] = unserialize($_EXTCONF);
-
-if (TYPO3_MODE=='BE')    {
-
-	// Setting up scripts that can be run from the cli_dispatch.phpsh script.
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['cliKeys']['squeezr'] = array('EXT:'.$_EXTKEY.'/squeezr_cli.php', '_CLI_squeezr');
-}
+// Call the functionality
+$squeezrObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tollwerk\\Squeezr\\Cli\\CacheCommand');
+$squeezrObj->cli_main($_SERVER['argv']);
 
 ?>
