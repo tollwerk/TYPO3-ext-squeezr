@@ -12,7 +12,10 @@
     "css3",
     "media",
     "query",
-    "css"
+    "css",
+    "typo3",
+    "cms",
+    "extension"
   ],
   "authors": [
     "Joschi Kuphal <joschi@kuphal.net>"
