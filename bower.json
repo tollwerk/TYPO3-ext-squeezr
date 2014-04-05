@@ -31,5 +31,6 @@
     "Gruntfile.js",
     "composer.json",
     "package.json"
-  ]
+  ],
+  "directory": "typo3conf/ext"
 }
