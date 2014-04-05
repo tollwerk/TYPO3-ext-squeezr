@@ -1,0 +1,32 @@
+{
+  "name": "squeezr TYPO3 extension",
+  "version": "v1.0.5",
+  "description": "TYPO3 extension version of squeezr, another take on device-aware adaptive images and server side CSS3 media queries",
+  "main": ["squeezr_cli.php", "class.ext_update.php"]
+  "keywords": [
+    "responsive",
+    "rwd",
+    "device-aware",
+    "adaptive",
+    "image",
+    "css3",
+    "media",
+    "query",
+    "css"
+  ],
+  "authors": [
+    "Joschi Kuphal <joschi@kuphal.net>"
+  ],
+  "license": "MIT",
+  "homepage": "http://squeezr.it",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "example",
+    "Gruntfile.js",
+    "composer.json",
+    "package.json"
+  ]
+}
