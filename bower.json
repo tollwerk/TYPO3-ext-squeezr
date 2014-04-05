@@ -1,6 +1,6 @@
 {
   "name": "squeezr TYPO3 extension",
-  "version": "v1.0.5",
+  "version": "v1.0.4",
   "description": "TYPO3 extension version of squeezr, another take on device-aware adaptive images and server side CSS3 media queries",
   "main": ["squeezr_cli.php", "class.ext_update.php"]
   "keywords": [
@@ -12,7 +12,10 @@
     "css3",
     "media",
     "query",
-    "css"
+    "css",
+    "typo3",
+    "cms",
+    "extension"
   ],
   "authors": [
     "Joschi Kuphal <joschi@kuphal.net>"
