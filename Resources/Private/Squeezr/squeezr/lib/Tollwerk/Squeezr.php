@@ -1,11 +1,11 @@
 <?php
 
 /**
- * squeezr engine base 
- * 
+ * squeezr engine base
+ *
  * @package		squeezr
  * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2014 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
+ * @copyright	Copyright © 2016 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
  * @link		http://squeezr.it
  * @github		https://github.com/jkphl/squeezr
  * @twitter		@squeezr
@@ -18,7 +18,7 @@ namespace Tollwerk;
 
 /**
  * Abstract Squeezr base class containing some common functionality
- * 
+ *
  * The core functionality for all squeezr engines basically deals with responding the correct file and header data.
  *
  * @package		squeezr
@@ -33,11 +33,11 @@ abstract class Squeezr {
 	 * @var array
 	 */
 	private $_headers = array();
-	
+
 	/************************************************************************************************
 	 * PRIVATE METHODS
 	 ***********************************************************************************************/
-	
+
 	/**
 	 * Add a HTTP error header
 	 *
@@ -49,7 +49,7 @@ abstract class Squeezr {
 		$this->_headers['X-Squeezr-Error']			= $error;
 		$this->_headers['X-Squeezr-Errno']			= $errorNumber;
 	}
-	
+
 	/**
 	 * Send a file along with it's appropriate headers
 	 *
@@ -59,33 +59,33 @@ abstract class Squeezr {
 	 * @return void
 	 */
 	protected function _sendFile($src, $mime, $cache = true) {
-		
+
 		// Custom headers
 		foreach ($this->_headers as $header => $value) {
 			header($header.': '.$value);
 		}
-	
+
 		// Send basic headers
 		header('Content-Type: '.$mime);
 		header('Content-Length: '.filesize(@is_link($src) ? @readlink($src) : $src));
-	
+
 		// If the client browser should cache the image
 		if ($cache) {
 			header('Cache-Control: private, max-age='.SQUEEZR_CACHE_LIFETIME);
 			header('Expires: '.gmdate('D, d M Y H:i:s', time() + SQUEEZR_CACHE_LIFETIME).' GMT');
 			header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($src)).' GMT');
 			header('ETag: '.$this->_calculateFileETag($src));
-				
+
 		// Else
 		} else {
 			header('Cache-Control: no-cache, must-revalidate');
 			header('Expires: '.gmdate('D, d M Y H:i:s', time() - SQUEEZR_CACHE_LIFETIME).' GMT');
 		}
-	
+
 		readfile($src);
 		exit;
 	}
-	
+
 	/**
 	 * Calculate the ETag of a file
 	 *

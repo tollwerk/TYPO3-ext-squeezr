@@ -2,10 +2,10 @@
 
 /**
  * Minification provider exception
- * 
+ *
  * @package		squeezr
  * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2014 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
+ * @copyright	Copyright © 2016 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
  * @link		http://squeezr.it
  * @github		https://github.com/jkphl/squeezr
  * @twitter		@squeezr

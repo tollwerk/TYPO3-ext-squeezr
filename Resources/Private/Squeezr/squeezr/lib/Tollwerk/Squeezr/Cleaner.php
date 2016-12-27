@@ -2,10 +2,10 @@
 
 /**
  * Cache cleaning
- * 
+ *
  * @package		squeezr
  * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2014 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
+ * @copyright	Copyright © 2016 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
  * @link		http://squeezr.it
  * @github		https://github.com/jkphl/squeezr
  * @twitter		@squeezr
@@ -27,28 +27,28 @@ namespace Tollwerk\Squeezr;
 class Cleaner {
 	/**
 	 * Base path
-	 * 
+	 *
 	 * @var string
 	 */
 	protected $_base = null;
-	
+
 	/************************************************************************************************
 	 * PUBLIC METHODS
 	 ***********************************************************************************************/
-	
+
 	/**
 	 * Recursively clean the cache directory given as base path
-	 * 
+	 *
 	 * @return void
 	 */
 	public function clean() {
 		$this->_cleanDirectory();
 	}
-	
+
 	/************************************************************************************************
 	 * PRIVATE METHODS
 	 ***********************************************************************************************/
-	
+
 	/**
 	 * Constructor
 	 *
@@ -57,10 +57,10 @@ class Cleaner {
 	private function __construct($base) {
 		$this->_base		= $base;
 	}
-	
+
 	/**
 	 * Recursively clean a subdirectory
-	 * 
+	 *
 	 * @param string $path								Subdirectory path
 	 * @return int										Number of contained resources
 	 */
@@ -69,35 +69,35 @@ class Cleaner {
 		$resourceCount		= count($resources);
 		$links				=
 		$files				= array();
-		
+
 		// Run through the directory contents
 		foreach ($resources as $resource) {
 			$absResource	= $this->_base.$path.DIRECTORY_SEPARATOR.$resource;
 			$origResource	= SQUEEZR_DOCROOT.$path.DIRECTORY_SEPARATOR.$resource;
-			
+
 			// Ignore symbolic links to current and parent directory
 			if (@is_dir($absResource) && (($resource == '.') || ($resource == '..'))) {
 				--$resourceCount;
 				continue;
 			}
-			
+
 			// If it's a directory ...
 			if (@is_dir($absResource)) {
-				
+
 				// Clean recursively and remove it alltogether in case it remains empty
 				if (!@is_dir($origResource) || !$this->_cleanDirectory(ltrim($path.DIRECTORY_SEPARATOR.$resource, DIRECTORY_SEPARATOR))) {
 					@exec('rm -R '.escapeshellarg($absResource));
 					--$resourceCount;
 				}
-				
+
 			// Else if it's a symbolic link: register it
 			} elseif (@is_link($absResource)) {
 				$links[]			= $resource;
-				
+
 			// Else if it's a regular file: register it
 			} elseif (@is_file($absResource)) {
 				$files[]			= $resource;
-				
+
 			// Else: No idea ... delete it!
 			} else {
 				if (@unlink($absResource)) {
@@ -105,21 +105,21 @@ class Cleaner {
 				}
 			}
 		}
-		
+
 		// Check & clean regular files
 		foreach ($files as $file) {
 			$absResource						= $this->_base.$path.DIRECTORY_SEPARATOR.$file;
-			
+
 			// Proceed based on file extension
 			switch (strtolower(pathinfo($file, PATHINFO_EXTENSION))) {
-				
+
 				// CSS file
 				case 'css':
-					
-					// If it's a breakpoint CSS file 
+
+					// If it's a breakpoint CSS file
 					if (preg_match("%^(.+)\-\d+\.css$%i", $file, $breakpointCssFile)) {
 						$origResource			= SQUEEZR_DOCROOT.$path.DIRECTORY_SEPARATOR.$breakpointCssFile[1].'.css';
-						
+
 					// Else: No idea ... delete it!
 					} else {
 						if (@unlink($absResource)) {
@@ -128,14 +128,14 @@ class Cleaner {
 						continue 2;
 					}
 					break;
-					
+
 				// PHP cache file
 				case 'php':
-					
+
 					// If it's a PHP cache file
 					if (preg_match("%^(.+)\-squeezr\.css\.php$%i", $file, $phpCacheFile)) {
 						$origResource			= SQUEEZR_DOCROOT.$path.DIRECTORY_SEPARATOR.$phpCacheFile[1].'.css';
-					
+
 					// Else: No idea ... delete it!
 					} else {
 						if (@unlink($absResource)) {
@@ -144,7 +144,7 @@ class Cleaner {
 						continue 2;
 					}
 					break;
-					
+
 				// Image files
 				case 'png':
 				case 'jpg':
@@ -152,13 +152,13 @@ class Cleaner {
 				case 'gif':
 					$origResource				= SQUEEZR_DOCROOT.$path.DIRECTORY_SEPARATOR.$resource;
 					break;
-					
+
 				// Other extensions: Ignore
 				default:
 					continue 2;
 					break;
 			}
-			
+
 			// Remove the cache file if the original file doesn't exist anymore or is younger
 			if (!@is_file($origResource) || (@filemtime($origResource) > @filemtime($absResource))) {
 				if (@unlink($absResource)) {
@@ -166,25 +166,25 @@ class Cleaner {
 				}
 			}
 		}
-		
+
 		// Check & clean symbolic links
 		foreach ($links as $link) {
 			$absResource						= $this->_base.$path.DIRECTORY_SEPARATOR.$link;
 			$origResource						= @readlink($absResource);
-			
+
 			// Delete the symbolic link if the original file doesn't exist anymore
 			if ((!$origResource || !@is_file($origResource)) && @unlink($absResource)) {
 				--$resourceCount;
 			}
 		}
-		
+
 		return $resourceCount;
 	}
-	
+
 	/************************************************************************************************
 	 * STATIC METHODS
 	 ***********************************************************************************************/
-	
+
 	/**
 	 * Instanciate a cache cleaner
 	 *

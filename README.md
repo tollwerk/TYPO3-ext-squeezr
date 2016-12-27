@@ -15,12 +15,12 @@ A PDF-version of the documentation is available at the [Tollwerk website](http:/
 Requirements
 ------------
 
-**ATTENTION**: This is a **TYPO3 CMS 6 only** release.
+**ATTENTION**: This is a **TYPO3 CMS 6+ only** release.
 
 
 Legal
 -----
 
-Copyright © 2014 Joschi Kuphal joschi@kuphal.net / @jkphl
+Copyright © 2016 Joschi Kuphal joschi@kuphal.net / @jkphl
 
 Licensed under the terms of the [GPL v2](LICENSE.txt) license.

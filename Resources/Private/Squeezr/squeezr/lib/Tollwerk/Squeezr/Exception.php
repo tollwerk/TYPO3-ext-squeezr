@@ -2,10 +2,10 @@
 
 /**
  * Error messages
- * 
+ *
  * @package		squeezr
  * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2014 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
+ * @copyright	Copyright © 2016 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
  * @link		http://squeezr.it
  * @github		https://github.com/jkphl/squeezr
  * @twitter		@squeezr
@@ -26,8 +26,8 @@ namespace Tollwerk\Squeezr;
  */
 class Exception extends \Exception {
 	/**
-	 * Invalid target cache directory 
-	 * 
+	 * Invalid target cache directory
+	 *
 	 * @var int
 	 */
 	const INVALID_TARGET_CACHE_DIRECTORY = 0;
@@ -39,7 +39,7 @@ class Exception extends \Exception {
 	const INVALID_TARGET_CACHE_DIRECTORY_MSG = 'squeezr cache directory non-existent and could not be created';
 	/**
 	 * Missing metrics cookie
-	 * 
+	 *
 	 * @var int
 	 */
 	const MISSING_METRICS_COOKIE = 1;
@@ -76,7 +76,7 @@ class Exception extends \Exception {
 	const INVALID_CSS_FILE_MSG = 'Invalid css file "%s"';
 	/**
 	 * Unbalanced block comment
-	 * 
+	 *
 	 * @var int
 	 */
 	const UNBALANCED_BLOCK_COMMENT = 103;
@@ -148,13 +148,13 @@ class Exception extends \Exception {
 	const GD_UNAVAILABLE_MSG = 'squeezr needs the GD library to be available';
 	/**
 	 * Breakpoint copy cache failed
-	 * 
+	 *
 	 * @var int
 	 */
 	const FAILED_COPY_CACHE = 202;
 	/**
 	 * Breakpoint copy cache failed
-	 * 
+	 *
 	 * @var string
 	 */
 	const FAILED_COPY_CACHE_MSG = 'Failed to cache the original image as breakpoint cache copy: "%s"';

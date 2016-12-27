@@ -2,10 +2,10 @@
 
 /**
  * Template file for parsed and cached CSS files
- * 
+ *
  * @package		squeezr
  * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2014 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
+ * @copyright	Copyright © 2016 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
  * @link		http://squeezr.it
  * @github		https://github.com/jkphl/squeezr
  * @twitter		@squeezr
@@ -27,19 +27,19 @@ namespace Tollwerk\Squeezr\Css {
 	class Cache_FILEHASH {
 		/**
 		 * Directory of extracted CSS media query breakpoints / conditions
-		 * 
+		 *
 		 * @var array
 		 */
 		private $_breakpointIndex = 'BREAKPOINTS';
 		/**
 		 * Tokenized CSS blocks of this stylesheet
-		 * 
+		 *
 		 * @var array
 		 */
 		private $_blocks = 'BLOCKS';
 		/**
 		 * Currently matching breakpoints
-		 * 
+		 *
 		 * @var int
 		 */
 		private $_breakpoints = null;
@@ -71,14 +71,14 @@ namespace Tollwerk\Squeezr\Css {
 		 * @var unknown
 		 */
 		const CONDITION_RESOLUTION = 4;
-	
+
 		/************************************************************************************************
 		 * PUBLIC METHODS
 		 ***********************************************************************************************/
-		
+
 		/**
 		 * Serialization of this CSS file for a specific request configuration
-		 * 
+		 *
 		 * @return string				Serialized CSS file
 		 */
 		public function __toString() {
@@ -98,13 +98,13 @@ namespace Tollwerk\Squeezr\Css {
 					$css										.= $block[1];
 				}
 			}
-			
+
 			return $css;
 		}
-		
+
 		/**
 		 * Determine the currently matching breakpoints (bitmask)
-		 * 
+		 *
 		 * @return int					Matching breakpoints
 		 */
 		public function getMatchingBreakpoints() {
@@ -115,20 +115,20 @@ namespace Tollwerk\Squeezr\Css {
 					self::CONDITION_RESOLUTION						=> 1,
 				);
 				$pxPerEm											= 16;
-					
+
 				// Capabilities detection
 				if (!empty($_COOKIE['squeezr_css']) && preg_match("%^(\d+)x(\d+)\@(\d+(?:\.\d+)?)%", $_COOKIE['squeezr_css'], $cssCapabilities)) {
 					$capabilities[self::CONDITION_WIDTH]			= intval($cssCapabilities[1]);
 					$capabilities[self::CONDITION_HEIGHT]			= intval($cssCapabilities[2]);
 					$pxPerEm										= floatval($cssCapabilities[3]);
 				}
-					
+
 				$this->_breakpoints									= 0;
 				$breakpointTypes									= array_flip(self::$_breakpointTypes);
 				foreach($this->_breakpointIndex as $index => $breakpoint) {
 					$breakpointType									= $breakpointTypes[$breakpoint[0]];
 					if (($capabilities[$breakpointType] !== null) && count($breakpoint[1])) {
-							
+
 						// Run through all breakpoint conditions
 						foreach ($breakpoint[1] as $unit => $value) {
 							$value									*= ($unit == 'em') ? $pxPerEm : 1;
@@ -136,28 +136,28 @@ namespace Tollwerk\Squeezr\Css {
 								continue 2;
 							}
 						}
-							
+
 						$this->_breakpoints							|= pow(2, $index);
 					}
 				}
 			}
-			
+
 			return $this->_breakpoints;
 		}
-		
+
 		/************************************************************************************************
 		 * STATIC METHODS
 		 ***********************************************************************************************/
-		
+
 		/**
 		 * Create an instance of this cached CSS file
-		 * 
+		 *
 		 * @return \Tollwerk\Squeezr\Css\Cache		Cache file instance
 		 */
 		public static function instance() {
 			return new self();
 		}
 	}
-	
+
 	return new Cache_FILEHASH();
 }
