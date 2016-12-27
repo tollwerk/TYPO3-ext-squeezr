@@ -12,10 +12,10 @@
 
 $EM_CONF[$_EXTKEY] = array(
     'title' => 'tollwerk squeezr',
-    'description' => '[TYPO3 CMS 6 Release] Easily integrate squeezr, another take on device-aware adaptive images and server side CSS3 media queries. For details see http://squeezr.it and follow @squeezr on Twitter.',
+    'description' => 'TYPO3 extension version of squeezr, another take on device-aware adaptive images and server side CSS3 media queries',
     'category' => 'plugin',
     'shy' => 0,
-    'version' => '1.0.4',
+    'version' => '1.1.0',
     'dependencies' => 'extbase,fluid',
     'conflicts' => '',
     'priority' => '',

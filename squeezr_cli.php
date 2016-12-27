@@ -27,11 +27,9 @@
  ***************************************************************/
 
 if (!defined('TYPO3_cliMode')) {
-	die('You cannot run this script directly!');
+    die('You cannot run this script directly!');
 }
 
 // Call the functionality
 $squeezrObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tollwerk\\Squeezr\\Cli\\CacheCommand');
 $squeezrObj->cli_main($_SERVER['argv']);
-
-?>

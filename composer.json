@@ -1,8 +1,8 @@
 {
-  "name": "jkphl/squeezr",
+  "name": "tollwerk/tw-squeezr",
   "type": "typo3-cms-extension",
-  "description": "Easily integrate squeezr (https://github.com/jkphl/squeezr) into your TYPO3 setup",
-  "homepage": "https://github.com/jkphl/TYPO3-ext-squeezr",
+  "description": "TYPO3 extension version of squeezr, another take on device-aware adaptive images and server side CSS3 media queries",
+  "homepage": "https://github.com/tollwerk/TYPO3-ext-squeezr",
   "license": "GPL-2.0+",
   "require": {
     "typo3/cms": ">=6.0"
@@ -13,8 +13,8 @@
     }
   },
   "replace": {
-    "squeezr": "self.version",
-    "typo3-ter/squeezr": "self.version"
+    "tw_squeezr": "self.version",
+    "typo3-ter/tw_squeezr": "self.version"
   },
   "authors": [
     {
