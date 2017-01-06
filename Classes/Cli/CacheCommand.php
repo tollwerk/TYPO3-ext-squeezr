@@ -5,7 +5,7 @@ namespace Tollwerk\Squeezr\Cli;
 /***************************************************************
  *  Copyright notice
  *
- *  Copyright © 2016 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
+ *  Copyright © 2017 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -31,13 +31,12 @@ namespace Tollwerk\Squeezr\Cli;
 /**
  * CLI interface for the squeezr cache
  *
- * @package        squeezr
- * @copyright    Copyright © 2016 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
- * @author        Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>
+ * @package squeezr
+ * @copyright Copyright © 2017 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
+ * @author Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>
  **/
 class CacheCommand extends \TYPO3\CMS\Core\Controller\CommandLineController
 {
-
     /**
      * Konstruktor
      *

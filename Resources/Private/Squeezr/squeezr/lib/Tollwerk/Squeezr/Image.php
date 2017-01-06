@@ -3,15 +3,15 @@
 /**
  * Server side treatment of media queries
  *
- * @package		squeezr
- * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2016 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
- * @link		http://squeezr.it
- * @github		https://github.com/jkphl/squeezr
+ * @package squeezr
+ * @author Joschi Kuphal <joschi@kuphal.net>
+ * @copyright	Copyright © 2017 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
+ * @link http://squeezr.it
+ * @github https://github.com/jkphl/squeezr
  * @twitter		@squeezr
- * @license		https://github.com/jkphl/squeezr/blob/master/LICENSE.txt MIT License
- * @since		1.0b
- * @version		1.0b
+ * @license https://github.com/jkphl/squeezr/blob/master/LICENSE.txt MIT License
+ * @since 1.0b
+ * @version 1.0b
  */
 
 namespace Tollwerk\Squeezr;
@@ -22,10 +22,10 @@ require_once dirname(__DIR__).DIRECTORY_SEPARATOR.'Squeezr.php';
 /**
  * Image engine
  *
- * @package		squeezr
- * @author		Joschi Kuphal <joschi@kuphal.net>
- * @since		1.0b
- * @version		1.0b
+ * @package squeezr
+ * @author Joschi Kuphal <joschi@kuphal.net>
+ * @since 1.0b
+ * @version 1.0b
  */
 class Image extends \Tollwerk\Squeezr {
 	/**
@@ -173,7 +173,7 @@ class Image extends \Tollwerk\Squeezr {
 	 * @param string $breakpoint		Breakpoint
 	 * @param array $errors				Errors
 	 * @return string					Result file path
-	 * @link							http://www.idux.com/2011/02/27/what-are-index-and-alpha-transparency/
+	 * @link http://www.idux.com/2011/02/27/what-are-index-and-alpha-transparency/
 	 */
 	public static function squeeze($source, $target, $breakpoint = SQUEEZR_BREAKPOINT, array &$errors = array()) {
 
@@ -232,8 +232,8 @@ class Image extends \Tollwerk\Squeezr {
 	 * @param int $targetWidth			Target image width
 	 * @param int $targetHeight			Target image height
 	 * @return boolean					Downscaled image has been saved
-	 * @link							http://en.wikipedia.org/wiki/Portable_Network_Graphics#Color_depth
-	 * @link							http://perplexed.co.uk/1814_png_optimization_with_gd_library.htm
+	 * @link http://en.wikipedia.org/wiki/Portable_Network_Graphics#Color_depth
+	 * @link http://perplexed.co.uk/1814_png_optimization_with_gd_library.htm
 	 */
 	protected static function _downscalePng($source, $width, $height, $target, $targetWidth, $targetHeight) {
 		$targetImage	        		= imagecreatetruecolor($targetWidth, $targetHeight);

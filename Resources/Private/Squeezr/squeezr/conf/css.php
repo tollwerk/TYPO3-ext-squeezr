@@ -5,15 +5,15 @@
  *
  * The following configuration options affect the squeezr CSS engine only.
  *
- * @package		squeezr
- * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2016 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
- * @link		http://squeezr.it
- * @github		https://github.com/jkphl/squeezr
+ * @package squeezr
+ * @author Joschi Kuphal <joschi@kuphal.net>
+ * @copyright	Copyright © 2017 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
+ * @link http://squeezr.it
+ * @github https://github.com/jkphl/squeezr
  * @twitter		@squeezr
- * @license		https://github.com/jkphl/squeezr/blob/master/LICENSE.txt MIT License
- * @since		1.0b
- * @version		1.0b
+ * @license https://github.com/jkphl/squeezr/blob/master/LICENSE.txt MIT License
+ * @since 1.0b
+ * @version 1.0b
  */
 
 /**
@@ -38,8 +38,8 @@ define('SQUEEZR_CSS', true);
  * copy of Minify preinstalled (you can find it under SQUEEZR_ROOT/plugins/minify). Minify is a
  * great project of it's own, please visit it at it's homepage or at it's GitHub repository:
  *
- * @link		https://code.google.com/p/minify/
- * @github		https://github.com/mrclay/minify
+ * @link https://code.google.com/p/minify/
+ * @github https://github.com/mrclay/minify
  *
  * If you do not want to use CSS minification provide NULL here.
  *

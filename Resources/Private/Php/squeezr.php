@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  Copyright © 2016 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
+ *  Copyright © 2017 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -38,71 +38,71 @@
  * e.g. implement a call to this script into your favourite CMS, so that the cache is refreshed
  * whenever you alter any of your images ...
  *
- * @package		squeezr
- * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2016 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
- * @link		http://squeezr.it
- * @github		https://github.com/jkphl/squeezr
- * @twitter		@squeezr
- * @license		http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported License
+ * @package squeezr
+ * @author Joschi Kuphal <joschi@kuphal.net>
+ * @copyright Copyright © 2017 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
+ * @link http://squeezr.it
+ * @github https://github.com/jkphl/squeezr
+ * @twitter        @squeezr
+ * @license http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported License
  */
 
 require_once __DIR__.DIRECTORY_SEPARATOR.'config.php';
 
 // If a squeezr engine has been requested and a file to process is given
 if (!empty($_GET['engine']) && !empty($_GET['source'])) {
-	switch ($_GET['engine']) {
+    switch ($_GET['engine']) {
 
-		// CSS engine
-		case 'css':
+        // CSS engine
+        case 'css':
 
-			// If the CSS engine hasn't been disabled temporarily
-			if (SQUEEZR_CSS) {
+            // If the CSS engine hasn't been disabled temporarily
+            if (SQUEEZR_CSS) {
 
-				// Include the CSS engine itself
-				require_once SQUEEZR_ROOT.'lib'.DIRECTORY_SEPARATOR.'Tollwerk'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'Css.php';
+                // Include the CSS engine itself
+                require_once SQUEEZR_ROOT.'lib'.DIRECTORY_SEPARATOR.'Tollwerk'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'Css.php';
 
-				// Squeeze, cache and send the CSS file
-				\Tollwerk\Squeezr\Css::instance($_GET['source'])->send();
+                // Squeeze, cache and send the CSS file
+                \Tollwerk\Squeezr\Css::instance($_GET['source'])->send();
 
-			// Else: Don't care about caching and deliver the original file
-			} else {
-				readfile(SQUEEZR_DOCROOT.$_GET['source']);
-			}
+                // Else: Don't care about caching and deliver the original file
+            } else {
+                readfile(SQUEEZR_DOCROOT.$_GET['source']);
+            }
 
-			break;
+            break;
 
-		// Image engine
-		case 'image':
+        // Image engine
+        case 'image':
 
-			// If the CSS engine hasn't been disabled temporarily
-			if (SQUEEZR_IMAGE) {
+            // If the CSS engine hasn't been disabled temporarily
+            if (SQUEEZR_IMAGE) {
 
-				// Include the image engine itself
-				require_once SQUEEZR_ROOT.'lib'.DIRECTORY_SEPARATOR.'Tollwerk'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'Image.php';
+                // Include the image engine itself
+                require_once SQUEEZR_ROOT.'lib'.DIRECTORY_SEPARATOR.'Tollwerk'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'Image.php';
 
-				// Squeeze, cache and send the image file
-				\Tollwerk\Squeezr\Image::instance($_GET['source'])->send();
+                // Squeeze, cache and send the image file
+                \Tollwerk\Squeezr\Image::instance($_GET['source'])->send();
 
-			// Else: Don't care about caching and deliver the original file
-			} else {
-				readfile(SQUEEZR_DOCROOT.$_GET['source']);
-			}
-			break;
-	}
+                // Else: Don't care about caching and deliver the original file
+            } else {
+                readfile(SQUEEZR_DOCROOT.$_GET['source']);
+            }
+            break;
+    }
 
-	exit;
+    exit;
 
 // Else: Cache cleaning / Garbage collection
 } else {
 
-	// Include the cache cleaner engine
-	require_once SQUEEZR_ROOT.'lib'.DIRECTORY_SEPARATOR.'Tollwerk'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'Cleaner.php';
+    // Include the cache cleaner engine
+    require_once SQUEEZR_ROOT.'lib'.DIRECTORY_SEPARATOR.'Tollwerk'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'Cleaner.php';
 
-	// Clean the cache root directory
-	\Tollwerk\Squeezr\Cleaner::instance(SQUEEZR_CACHEROOT)->clean();
+    // Clean the cache root directory
+    \Tollwerk\Squeezr\Cleaner::instance(SQUEEZR_CACHEROOT)->clean();
 
-	// Respond with an empty content
-	header('HTTP/1.1 204 No Content');
-	exit;
+    // Respond with an empty content
+    header('HTTP/1.1 204 No Content');
+    exit;
 }

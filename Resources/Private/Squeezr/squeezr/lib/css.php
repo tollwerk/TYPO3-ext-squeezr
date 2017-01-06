@@ -3,15 +3,15 @@
 /**
  * CSS engine configuration (internal hub including the common configuration)
  *
- * @package		squeezr
- * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2016 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
- * @link		http://squeezr.it
- * @github		https://github.com/jkphl/squeezr
+ * @package squeezr
+ * @author Joschi Kuphal <joschi@kuphal.net>
+ * @copyright	Copyright © 2017 Joschi Kuphal <joschi@kuphal.net>, http://jkphl.is
+ * @link http://squeezr.it
+ * @github https://github.com/jkphl/squeezr
  * @twitter		@squeezr
- * @license		https://github.com/jkphl/squeezr/blob/master/LICENSE.txt MIT License
- * @since		1.0b
- * @version		1.0b
+ * @license https://github.com/jkphl/squeezr/blob/master/LICENSE.txt MIT License
+ * @since 1.0b
+ * @version 1.0b
  */
 
 // Require the global common configuration

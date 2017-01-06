@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  Copyright © 2016 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
+ *  Copyright © 2017 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -27,7 +27,7 @@
  ***************************************************************/
 
 if (!defined('TYPO3_MODE')) {
-	die ('Access denied.');
+    die ('Access denied.');
 }
 
 // Register hook for squeezr JavaScript integration
@@ -36,8 +36,11 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['checkData
 // Provide global access to the extension configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['extParams'][$_EXTKEY] = unserialize($_EXTCONF);
 
-if (TYPO3_MODE=='BE')    {
+if (TYPO3_MODE == 'BE') {
 
-	// Setting up scripts that can be run from the cli_dispatch.phpsh script.
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['cliKeys']['squeezr'] = array('EXT:'.$_EXTKEY.'/squeezr_cli.php', '_CLI_squeezr');
+    // Setting up scripts that can be run from the cli_dispatch.phpsh script.
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['cliKeys']['squeezr'] = array(
+        'EXT:'.$_EXTKEY.'/squeezr_cli.php',
+        '_CLI_squeezr'
+    );
 }

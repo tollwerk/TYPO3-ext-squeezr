@@ -5,7 +5,7 @@ namespace Tollwerk\Squeezr\Utility;
 /***************************************************************
  *  Copyright notice
  *
- *  Copyright © 2016 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
+ *  Copyright © 2017 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -31,9 +31,9 @@ namespace Tollwerk\Squeezr\Utility;
 /**
  * Squeezr helper class
  *
- * @package        squeezr
- * @copyright    Copyright © 2016 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
- * @author        Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>
+ * @package squeezr
+ * @copyright Copyright © 2017 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
+ * @author Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>
  */
 class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\Toolbar\ClearCacheActionsHookInterface
 {
