@@ -25,5 +25,5 @@ pngquantizerspeed = 5
 # cat=css/a; type=boolean; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:css.enable
 css = 1
 
-# cat=css/b; type=options[---=,Minify=minify]; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:css.minification
-minification = minify
+# cat=css/b; type=boolean; label=LLL:EXT:squeezr/Resources/Private/Language/locallang_db.xlf:css.minify
+minify = 1

@@ -28,6 +28,10 @@ namespace Tollwerk\Squeezr\Utility;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Backend\Utility\IconUtility;
+
 /**
  * Squeezr helper class
  *
@@ -65,7 +69,7 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
                     if (!empty($config['images.']['disable']) && intval($config['images.']['disable'])) {
                         $tsfe->pSetup['headTag'] .= ' data-disable-images="1"';
                     } else {
-                        $breakpoints = (empty($config['images.']['breakpoints']) || !strlen(trim($config['images.']['breakpoints']))) ? array() : \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',',
+                        $breakpoints = (empty($config['images.']['breakpoints']) || !strlen(trim($config['images.']['breakpoints']))) ? array() : GeneralUtility::trimExplode(',',
                             trim($config['images.']['breakpoints']), true);
                         if (count($breakpoints)) {
                             sort($breakpoints, SORT_NUMERIC);
@@ -80,7 +84,7 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
                         $tsfe->pSetup['headTag'] .= ' data-disable-css="1"';
                     }
 
-                    $tsfe->pSetup['headTag'] .= '>'.file_get_contents(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('squeezr',
+                    $tsfe->pSetup['headTag'] .= '>'.file_get_contents(ExtensionManagementUtility::extPath('squeezr',
                             'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'squeezr'.DIRECTORY_SEPARATOR.'squeezr.min.js')).'</script>';
                     $tsfe->pSetup['headTag'] .= $headTagParts[2];
                 }
@@ -105,8 +109,8 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
                 'id' => 'clearUpdateSqueezrCache',
                 'title' => $title,
                 'href' => $GLOBALS['BACK_PATH'].'ajax.php?ajaxID=squeezr::clearUpdateSqueezrCache',
-                'icon' => '<img '.\TYPO3\CMS\Backend\Utility\IconUtility::skinImg($GLOBALS['BACK_PATH'],
-                        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('squeezr').'ext_icon.gif',
+                'icon' => '<img '.IconUtility::skinImg($GLOBALS['BACK_PATH'],
+                        ExtensionManagementUtility::extRelPath('squeezr').'ext_icon.gif',
                         'width="16" height="16"').' title="'.$title.'" alt="'.$title.'" />'
             );
             $optionValues[] = 'clearUpdateSqueezrCache';
@@ -120,9 +124,9 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
      */
     public function includeLocalLang()
     {
-        /* @var $parserFactory t3lib_l10n_Factory */
-        $parserFactory = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_l10n_Factory');
-        return $parserFactory->getParsedData(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('squeezr',
+        /* @var $parserFactory \TYPO3\CMS\Core\Localization\LocalizationFactory */
+        $parserFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\LocalizationFactory');
+        return $parserFactory->getParsedData(ExtensionManagementUtility::extPath('squeezr',
             'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Language'.DIRECTORY_SEPARATOR.'locallang_db.xlf'),
             $GLOBALS['LANG']->lang, 'utf-8', 1);
     }

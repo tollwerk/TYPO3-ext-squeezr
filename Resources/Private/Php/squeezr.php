@@ -43,7 +43,7 @@
  * @copyright Copyright © 2017 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
  * @link http://squeezr.it
  * @github https://github.com/jkphl/squeezr
- * @twitter        @squeezr
+ * @twitter @squeezr
  * @license http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported License
  */
 
