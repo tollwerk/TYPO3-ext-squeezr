@@ -15,7 +15,7 @@ A PDF-version of the documentation is available at the [Tollwerk website](http:/
 Requirements
 ------------
 
-**ATTENTION**: This is a **TYPO3 CMS 6+ only** release.
+**ATTENTION**: This is a **TYPO3 CMS 6+ only** release and is **no longer maintained**.
 
 
 Legal
