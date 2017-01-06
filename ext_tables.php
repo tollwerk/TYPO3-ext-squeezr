@@ -35,4 +35,4 @@ if (!defined('TYPO3_MODE')) {
 
 // Register the squeezr cache cleaning menu hook
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['additionalBackendItems']['cacheActions']['clearUpdateSqueezrCache'] = 'EXT:'.$_EXTKEY.'/Classes/Utility/Squeezr.php:Tollwerk\\Squeezr\\Utility\\Squeezr';
-$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['squeezr::clearUpdateSqueezrCache'] = 'EXT:'.$_EXTKEY.'/Classes/Utility/Squeezr.php:Tollwerk\\Squeezr\\Utility\\Squeezr->updateCache';
+$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['tw_squeezr::clearUpdateSqueezrCache'] = 'EXT:'.$_EXTKEY.'/Classes/Utility/Squeezr.php:Tollwerk\\Squeezr\\Utility\\Squeezr->updateCache';

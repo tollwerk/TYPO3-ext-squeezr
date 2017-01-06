@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-05-30T12:05:38Z" product-name="squeezr">
-		<header/>
-		<body>
-		    <trans-unit id="common" xml:space="preserve">
+    <file source-language="en" datatype="plaintext" original="messages" date="2013-05-30T12:05:38Z"
+          product-name="squeezr">
+        <header/>
+        <body>
+            <trans-unit id="common" xml:space="preserve">
 				<source>Common options</source>
 			</trans-unit>
 		    <trans-unit id="common.enable" xml:space="preserve">
@@ -60,9 +61,12 @@
 		    <trans-unit id="cache.update" xml:space="preserve">
 				<source>Update squeezr cache</source>
 			</trans-unit>
-		    <trans-unit id="config.update" xml:space="preserve">
-				<source>The squeezr configuration has successfully been updated.</source>
+		    <trans-unit id="config.update.error" xml:space="preserve">
+				<source>Oops! An error occurred during the update of your squeezr configuration.</source>
 			</trans-unit>
-		</body>
-	</file>
+		    <trans-unit id="config.update" xml:space="preserve">
+				<source>&lt;p&gt;Congratulations! The squeezr configuration has successfully been updated. Next, make sure your root &lt;code&gt;.htaccess&lt;/code&gt; contains the following rewrite rules:&lt;/p&gt;&lt;pre&gt;%s&lt;/pre&gt;&lt;br/&lt;&lt;p&gt;Additionally, you will want to add the following condition to both rules in order to exclude the TYPO3 backend:&lt;/p&gt;&lt;pre&gt;%s&lt;/pre&gt;</source>
+			</trans-unit>
+        </body>
+    </file>
 </xliff>

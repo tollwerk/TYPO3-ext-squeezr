@@ -45,12 +45,16 @@ class ext_update
      */
     function main()
     {
+        $abstractSqueezrClassReflection = new \ReflectionClass('Tollwerk\\Squeezr');
+        $squeezrRoot = dirname(dirname(dirname($abstractSqueezrClassReflection->getFileName())));
+        $vendorDir = dirname(dirname(dirname($squeezrRoot))).DIRECTORY_SEPARATOR;
+        $squeezrConfigFile = PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'config.php';
+
         // Update the squeezr hub script
-        $config = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extParams']['squeezr'];
+        $config = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extParams']['tw_squeezr'];
         $squeezrConfig = implode("\n", array(
             "define('SQUEEZR_DOCROOT', '".PATH_site."');",
-            "define('SQUEEZR_ROOT', '".ExtensionManagementUtility::extPath('squeezr',
-                'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'squeezr'.DIRECTORY_SEPARATOR)."');",
+            "define('SQUEEZR_ROOT', '".$squeezrRoot."');",
             "define('SQUEEZR_CACHE_LIFETIME', ".intval($config['lifetime']).");",
             "define('SQUEEZR_CACHEROOT', '".PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR."');",
             "define('SQUEEZR_BREAKPOINT', empty(\$_GET['breakpoint']) ? null : trim(\$_GET['breakpoint']));",
@@ -64,19 +68,36 @@ class ext_update
             "define('SQUEEZR_CSS', ".(intval($config['css']) ? 'true' : 'false').");",
             "define('SQUEEZR_CSS_MINIFY', ".(intval($config['minify']) ? 'true' : 'false').");",
         ));
-        file_put_contents(PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'config.php', '<?php'."\n\n$squeezrConfig");
-        copy(ExtensionManagementUtility::extPath('squeezr',
-            'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Php'.DIRECTORY_SEPARATOR.'squeezr.php'),
-            PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'index.php');
+        file_put_contents($squeezrConfigFile, '<?php'."\n\n$squeezrConfig");
+
+        // Install the squeezr main script
+        $squeezrMain = file_get_contents($squeezrRoot.DIRECTORY_SEPARATOR.'index.php');
+        file_put_contents(
+            PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'index.php',
+            "<?php\n\n".implode("\n", array(
+                "define('SQUEEZR_VENDOR_DIR', '$vendorDir');",
+                "define('SQUEEZR_CONFIG_COMMON', '$squeezrConfigFile');",
+                "define('SQUEEZR_CONFIG_IMAGE', '$squeezrConfigFile');",
+                "define('SQUEEZR_CONFIG_CSS', '$squeezrConfigFile');"
+            ))."\n\n?>$squeezrMain"
+        );
 
         // Install the .htacces file in case it doesn't exist yet
         if (!@is_file(PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'.htaccess')) {
-            copy(ExtensionManagementUtility::extPath('squeezr',
-                'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'squeezr'.DIRECTORY_SEPARATOR.'.htaccess'),
-                PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'.htaccess');
+            copy($squeezrRoot.DIRECTORY_SEPARATOR.'.htaccess', PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'.htaccess');
         }
 
-        return $GLOBALS['LANG']->getLLL('config.update', $this->includeLocalLang());
+        // Extract the necessary rewrite rules
+        $htaccess = file_get_contents(dirname($squeezrRoot).DIRECTORY_SEPARATOR.'.htaccess');
+        if (preg_match('%RewriteBase /(.+?)</IfModule>%s', $htaccess, $rules)) {
+            return sprintf(
+                $GLOBALS['LANG']->getLLL('config.update', $this->includeLocalLang()),
+                trim($rules[1]),
+                'RewriteCond %{HTTP_REFERER} !/typo3/'
+            );
+        } else {
+            return $GLOBALS['LANG']->getLLL('config.update.error', $this->includeLocalLang());
+        }
     }
 
     /**
@@ -88,7 +109,7 @@ class ext_update
     {
         /* @var $parserFactory \TYPO3\CMS\Core\Localization\LocalizationFactory */
         $parserFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\LocalizationFactory');
-        return $parserFactory->getParsedData(ExtensionManagementUtility::extPath('squeezr',
+        return $parserFactory->getParsedData(ExtensionManagementUtility::extPath('tw_squeezr',
             'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Language'.DIRECTORY_SEPARATOR.'locallang_db.xlf'),
             $GLOBALS['LANG']->lang, 'utf-8', 1);
     }

@@ -84,8 +84,8 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
                         $tsfe->pSetup['headTag'] .= ' data-disable-css="1"';
                     }
 
-                    $tsfe->pSetup['headTag'] .= '>'.file_get_contents(ExtensionManagementUtility::extPath('squeezr',
-                            'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'squeezr'.DIRECTORY_SEPARATOR.'squeezr.min.js')).'</script>';
+//                    $tsfe->pSetup['headTag'] .= '>'.file_get_contents(ExtensionManagementUtility::extPath('tw_squeezr',
+//                            'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'squeezr'.DIRECTORY_SEPARATOR.'squeezr.min.js')).'</script>';
                     $tsfe->pSetup['headTag'] .= $headTagParts[2];
                 }
             }
@@ -110,7 +110,7 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
                 'title' => $title,
                 'href' => $GLOBALS['BACK_PATH'].'ajax.php?ajaxID=squeezr::clearUpdateSqueezrCache',
                 'icon' => '<img '.IconUtility::skinImg($GLOBALS['BACK_PATH'],
-                        ExtensionManagementUtility::extRelPath('squeezr').'ext_icon.gif',
+                        ExtensionManagementUtility::extRelPath('tw_squeezr').'ext_icon.gif',
                         'width="16" height="16"').' title="'.$title.'" alt="'.$title.'" />'
             );
             $optionValues[] = 'clearUpdateSqueezrCache';
@@ -126,7 +126,7 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
     {
         /* @var $parserFactory \TYPO3\CMS\Core\Localization\LocalizationFactory */
         $parserFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\LocalizationFactory');
-        return $parserFactory->getParsedData(ExtensionManagementUtility::extPath('squeezr',
+        return $parserFactory->getParsedData(ExtensionManagementUtility::extPath('tw_squeezr',
             'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Language'.DIRECTORY_SEPARATOR.'locallang_db.xlf'),
             $GLOBALS['LANG']->lang, 'utf-8', 1);
     }
@@ -138,7 +138,7 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
      */
     public function updateCache()
     {
-        $squeezrConfig = PATH_site.'typo3temp'.DIRECTORY_SEPARATOR.'squeezr'.DIRECTORY_SEPARATOR.'config.php';
+        $squeezrConfig = PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'config.php';
         if (@is_readable($squeezrConfig)) {
 
             // Include the squeezr configuration
