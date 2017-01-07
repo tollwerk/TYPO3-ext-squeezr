@@ -55,13 +55,14 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
     /**
      * Integrate the squeezr JavaScript into the <head> section of the output
      *
+     * @param array $params Configuration parameters
      * @param TypoScriptFrontendController $tsfe Frontend engine
      * @return void
      */
-    public function checkDataSubmission(TypoScriptFrontendController $tsfe)
+    public function configArrayPostProc(array $params, TypoScriptFrontendController $tsfe)
     {
-        if (!self::$_headTag && !empty($tsfe->tmpl->setup['config.']['squeezr.'])) {
-            $config = $tsfe->tmpl->setup['config.']['squeezr.'];
+        if (!self::$_headTag && !empty($params['config']['squeezr.'])) {
+            $config = $params['config']['squeezr.'];
             if (!empty($config['enable']) && intval($config['enable']) &&
                 !empty($config['images.']) && is_array($config['images.']) &&
                 !empty($config['css.']) && is_array($config['css.'])
