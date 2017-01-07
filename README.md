@@ -16,6 +16,11 @@ Documentation
 An up-to-date documentation is [available as Markdown file](doc/README.md). There's also a slightly outdated PDF version available [here](doc/manual.pdf) or on the [Tollwerk website](http://tollwerk.de/fileadmin/media/manuals/squeezr/manual.pdf).
 
 
+ChangeLog
+---------
+Please see the [changelog](CHANGELOG.md) for details.
+
+
 Legal
 -----
 
