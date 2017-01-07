@@ -31,5 +31,5 @@ if (!defined('TYPO3_cliMode')) {
 }
 
 // Call the functionality
-$squeezrObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tollwerk\\Squeezr\\Cli\\CacheCommand');
-$squeezrObj->cli_main($_SERVER['argv']);
+\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tollwerk\\Squeezr\\Cli\\CacheCommand')
+    ->cli_main($_SERVER['argv']);

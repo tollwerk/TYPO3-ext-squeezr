@@ -93,7 +93,7 @@ class ext_update
             return sprintf(
                 $GLOBALS['LANG']->getLLL('config.update', $this->includeLocalLang()),
                 trim($rules[1]),
-                'RewriteCond %{HTTP_REFERER} !/typo3/'
+                'RewriteCond %{REQUEST_URI} !^/typo3/'
             );
         } else {
             return $GLOBALS['LANG']->getLLL('config.update.error', $this->includeLocalLang());

@@ -1,7 +1,5 @@
 <?php
 
-namespace Tollwerk\Squeezr\Cli;
-
 /***************************************************************
  *  Copyright notice
  *
@@ -28,6 +26,12 @@ namespace Tollwerk\Squeezr\Cli;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace Tollwerk\Squeezr\Cli;
+
+use Tollwerk\Squeezr\Utility\Squeezr;
+use TYPO3\CMS\Core\Controller\CommandLineController;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * CLI interface for the squeezr cache
  *
@@ -35,7 +39,7 @@ namespace Tollwerk\Squeezr\Cli;
  * @copyright Copyright © 2017 Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>, tollwerk® GmbH (http://tollwerk.de)
  * @author Dipl.-Ing. Joschi Kuphal <joschi@tollwerk.de>
  **/
-class CacheCommand extends \TYPO3\CMS\Core\Controller\CommandLineController
+class CacheCommand extends CommandLineController
 {
     /**
      * Konstruktor
@@ -86,8 +90,8 @@ class CacheCommand extends \TYPO3\CMS\Core\Controller\CommandLineController
      */
     protected function _clearCache()
     {
-        /* @var $squeezrObj \Tollwerk\Squeezr\Utility\Squeezr */
-        $squeezrObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tollwerk\\Squeezr\\Utility\\Squeezr');
+        /* @var $squeezrObj Squeezr */
+        $squeezrObj = GeneralUtility::makeInstance('Tollwerk\\Squeezr\\Utility\\Squeezr');
         $squeezrObj->updateCache();
     }
 }

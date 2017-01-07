@@ -1,7 +1,5 @@
 <?php
 
-namespace Tollwerk\Squeezr\Utility;
-
 /***************************************************************
  *  Copyright notice
  *
@@ -28,9 +26,15 @@ namespace Tollwerk\Squeezr\Utility;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+namespace Tollwerk\Squeezr\Utility;
+
+use Tollwerk\Squeezr\Cleaner;
+use TYPO3\CMS\Core\Http\AjaxRequestHandler;
+use TYPO3\CMS\Core\Localization\LocalizationFactory;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Utility\IconUtility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Squeezr helper class
@@ -51,14 +55,17 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
     /**
      * Integrate the squeezr JavaScript into the <head> section of the output
      *
-     * @param TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController $tsfe Frontend engine
+     * @param TypoScriptFrontendController $tsfe Frontend engine
      * @return void
      */
-    public function checkDataSubmission(\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController $tsfe)
+    public function checkDataSubmission(TypoScriptFrontendController $tsfe)
     {
         if (!self::$_headTag && !empty($tsfe->tmpl->setup['config.']['squeezr.'])) {
             $config = $tsfe->tmpl->setup['config.']['squeezr.'];
-            if (!empty($config['enable']) && intval($config['enable']) && !empty($config['images.']) && is_array($config['images.']) && !empty($config['css.']) && is_array($config['css.'])) {
+            if (!empty($config['enable']) && intval($config['enable']) &&
+                !empty($config['images.']) && is_array($config['images.']) &&
+                !empty($config['css.']) && is_array($config['css.'])
+            ) {
                 $headTag = empty($tsfe->pSetup['headTag']) ? '<head>' : trim($tsfe->pSetup['headTag']);
                 if (preg_match("%^(\<head[^\>]*\>)(.*)$%i", $headTag, $headTagParts)) {
                     $tsfe->pSetup['headTag'] = $headTagParts[1];
@@ -84,8 +91,10 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
                         $tsfe->pSetup['headTag'] .= ' data-disable-css="1"';
                     }
 
-//                    $tsfe->pSetup['headTag'] .= '>'.file_get_contents(ExtensionManagementUtility::extPath('tw_squeezr',
-//                            'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'squeezr'.DIRECTORY_SEPARATOR.'squeezr.min.js')).'</script>';
+                    $abstractSqueezrClassReflection = new \ReflectionClass('Tollwerk\\Squeezr');
+                    $squeezrRootDirectory = dirname(dirname(dirname($abstractSqueezrClassReflection->getFileName())));
+
+                    $tsfe->pSetup['headTag'] .= '>'.file_get_contents($squeezrRootDirectory.DIRECTORY_SEPARATOR.'squeezr.min.js').'</script>';
                     $tsfe->pSetup['headTag'] .= $headTagParts[2];
                 }
             }
@@ -124,7 +133,7 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
      */
     public function includeLocalLang()
     {
-        /* @var $parserFactory \TYPO3\CMS\Core\Localization\LocalizationFactory */
+        /* @var $parserFactory LocalizationFactory */
         $parserFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Localization\\LocalizationFactory');
         return $parserFactory->getParsedData(ExtensionManagementUtility::extPath('tw_squeezr',
             'Resources'.DIRECTORY_SEPARATOR.'Private'.DIRECTORY_SEPARATOR.'Language'.DIRECTORY_SEPARATOR.'locallang_db.xlf'),
@@ -134,9 +143,11 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
     /**
      * Cleans the squeezr cache
      *
+     * @param array $params Array of parameters from the AJAX interface, currently unused
+     * @param AjaxRequestHandler $ajaxObj Object of type AjaxRequestHandler
      * @return void
      */
-    public function updateCache()
+    public function updateCache($params = array(), AjaxRequestHandler &$ajaxObj = null)
     {
         $squeezrConfig = PATH_site.'squeezr'.DIRECTORY_SEPARATOR.'config.php';
         if (@is_readable($squeezrConfig)) {
@@ -144,11 +155,8 @@ class Squeezr implements \TYPO3\CMS\Core\SingletonInterface, \TYPO3\CMS\Backend\
             // Include the squeezr configuration
             require_once $squeezrConfig;
 
-            // Include the cache cleaner engine
-            require_once SQUEEZR_ROOT.'lib'.DIRECTORY_SEPARATOR.'Tollwerk'.DIRECTORY_SEPARATOR.'Squeezr'.DIRECTORY_SEPARATOR.'Cleaner.php';
-
             // Clean the cache root directory
-            \Tollwerk\Squeezr\Cleaner::instance(SQUEEZR_CACHEROOT)->clean();
+            Cleaner::instance(SQUEEZR_CACHEROOT)->clean();
         }
     }
 }

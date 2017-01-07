@@ -31,7 +31,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 // Register hook for squeezr JavaScript integration
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['checkDataSubmission'][] = 'EXT:'.$_EXTKEY.'/Classes/Utility/Squeezr.php:Tollwerk\\Squeezr\\Utility\\Squeezr';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['configArrayPostProc'][] = 'EXT:'.$_EXTKEY.'/Classes/Utility/Squeezr.php:Tollwerk\\Squeezr\\Utility\\Squeezr';
 
 // Provide global access to the extension configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['extParams'][$_EXTKEY] = unserialize($_EXTCONF);
